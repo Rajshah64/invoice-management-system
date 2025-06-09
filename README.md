@@ -2,7 +2,7 @@
 
 A modern, full-stack invoice management application built with Next.js 15, TypeScript, and Prisma. This application provides a complete solution for creating, managing, and tracking invoices with user authentication and a responsive dashboard.
 
-## ✨ Features
+## Features
 
 - **User Authentication**: Secure authentication with NextAuth.js
 - **Invoice Management**: Create, edit, and manage invoices with detailed tracking
@@ -25,13 +25,13 @@ A modern, full-stack invoice management application built with Next.js 15, TypeS
 - **Form Handling**: Conform, Zod
 - **UI Components**: Custom components with Radix UI primitives
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Node.js 18+
 - PostgreSQL database
 - pnpm (recommended) or npm
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Clone the Repository
 
@@ -90,7 +90,7 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ├── app/                    # Next.js App Router
@@ -109,7 +109,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 └── ...config files
 ```
 
-## 🗄 Database Schema
+## Database Schema
 
 The application uses the following main models:
 
@@ -122,7 +122,7 @@ The application uses the following main models:
 - `PENDING`: Invoice awaiting payment
 - `PAID`: Invoice has been paid
 
-## 🔧 Available Scripts
+## Available Scripts
 
 ```bash
 # Development
@@ -142,7 +142,7 @@ pnpm prisma:reset-client    # Reset and reinstall Prisma client
 pnpm lint                   # Run ESLint
 ```
 
-## 🎨 UI Components
+## UI Components
 
 This project uses a modern component system built with:
 
@@ -152,7 +152,7 @@ This project uses a modern component system built with:
 - **React Hot Toast/Sonner**: Toast notifications
 - **React Day Picker**: Date selection
 
-## 📧 Email Integration
+## Email Integration
 
 The application integrates with Mailtrap for email functionality:
 
@@ -160,7 +160,7 @@ The application integrates with Mailtrap for email functionality:
 - Email notifications
 - Secure email delivery
 
-## 🔐 Authentication
+## Authentication
 
 User authentication is handled by NextAuth.js with support for:
 
@@ -169,7 +169,7 @@ User authentication is handled by NextAuth.js with support for:
 - Session management
 - Email verification
 
-## 📄 PDF Generation
+## PDF Generation
 
 Invoice PDFs are generated using jsPDF with:
 
@@ -178,7 +178,7 @@ Invoice PDFs are generated using jsPDF with:
 - Detailed invoice information
 - Download and email capabilities
 
-## 🚀 Deployment
+## Deployment
 
 ### Environment Variables for Production
 
@@ -196,7 +196,7 @@ This Next.js application is optimized for deployment on Vercel:
 2. Configure environment variables
 3. Deploy automatically on every push to main
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -204,7 +204,7 @@ This Next.js application is optimized for deployment on Vercel:
 4. Run tests and linting
 5. Submit a pull request
 
-## 📝 Prisma Commands Reference
+## Prisma Commands Reference
 
 Common Prisma commands used in this project:
 
@@ -216,7 +216,7 @@ prisma db pull       # Pull schema from database
 prisma studio        # Open Prisma Studio GUI
 ```
 
-## 📞 Support
+## Support
 
 For questions or issues, please:
 
@@ -226,4 +226,4 @@ For questions or issues, please:
 
 ---
 
-Built with ❤️ using Next.js 15 and modern web technologies.
+Built with using Next.js 15 and modern web technologies.
