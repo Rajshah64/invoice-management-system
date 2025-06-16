@@ -80,7 +80,7 @@ export async function createInvoice(prevState: any, formData: FormData) {
     },
   ];
 
-  const finalDate = addDays(submission.value.date, submission.value.dueDate);
+  const finalDate = addDays(new Date(submission.value.date), submission.value.dueDate);
   // here we are using the mailtrap client to send an email to the user with the invoice details.
   // finaldate is the date when the invoice is due.
   // we are using the addDays function to add the invoice pdf.
@@ -192,3 +192,19 @@ export async function DeleteInvoice(invoiceId: string) {
   });
   return redirect("/dashboard/invoices");
 }
+
+
+export async function MarkInvoiceAsPaid(invoiceId: string) {
+  const session = await requireUser();
+  const data = await prisma.invoice.update({
+    where: {
+      userId: session.user?.id,
+      id: invoiceId,
+    },
+    data: {
+      status: "PAID",
+    },
+  });
+  return redirect("/dashboard/invoices");
+}
+

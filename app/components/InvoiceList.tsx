@@ -69,7 +69,7 @@ export async function InvoiceList() {
                 </TableCell>
                 <TableCell>{format(invoice.createdAt, "PP")}</TableCell>
                 <TableCell className="text-right">
-                  <InvoiceActions id={invoice.id} />
+                  <InvoiceActions status={invoice.status} id={invoice.id} />
                 </TableCell>
               </TableRow>
             ))
