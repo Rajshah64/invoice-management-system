@@ -76,11 +76,14 @@ export async function createInvoice(prevState: any, formData: FormData) {
   };
   const recipients = [
     {
-      email: "rajshah1759979@gmail.com",
+      email: "rajviralshah@gmail.com",
     },
   ];
 
-  const finalDate = addDays(new Date(submission.value.date), submission.value.dueDate);
+  const finalDate = addDays(
+    new Date(submission.value.date),
+    submission.value.dueDate
+  );
   // here we are using the mailtrap client to send an email to the user with the invoice details.
   // finaldate is the date when the invoice is due.
   // we are using the addDays function to add the invoice pdf.
@@ -89,7 +92,7 @@ export async function createInvoice(prevState: any, formData: FormData) {
     .send({
       from: sender,
       to: recipients,
-      template_uuid: "61635a68-1fe7-4424-8e1d-68e57ff04715",
+      template_uuid: "36904ae8-de20-4175-9dc7-4a6af212405c",
       template_variables: {
         clientName: submission.value.clientName,
         invoiceNumber: submission.value.invoiceNumber,
@@ -143,38 +146,41 @@ export async function updateInvoice(prevState: any, formData: FormData) {
     },
   });
 
-  // const sender = {
-  //   email: "hello@demomailtrap.co",
-  //   name: "Mailtrap Test",
-  // };
-  // const recipients = [
-  //   {
-  //     email: "rajshah1759979@gmail.com",
-  //   },
-  // ];
+  const sender = {
+    email: "hello@demomailtrap.co",
+    name: "Mailtrap Test",
+  };
+  const recipients = [
+    {
+      email: "rajviralshah@gmail.com",
+    },
+  ];
 
-  // const finalDate = addDays(submission.value.date, submission.value.dueDate);
+  const finalDate = addDays(
+    new Date(submission.value.date),
+    submission.value.dueDate
+  );
 
-  // client
-  //   .send({
-  //     from: sender,
-  //     to: recipients,
-  //     template_uuid: "61635a68-1fe7-4424-8e1d-68e57ff04715",
-  //     template_variables: {
-  //       clientName: submission.value.clientName,
-  //       invoiceNumber: submission.value.invoiceNumber,
-  //       dueDate: format(finalDate, "PP"),
-  //       totalAmount: formatCurrency({
-  //         amount: submission.value.total,
-  //         currency: submission.value.currency as any,
-  //       }),
-  //       invoiceLink: `http://localhost:3000/api/invoice/${data.id}`,
-  //     },
-  //   })
-  //   .then(console.log)
-  //   .catch(console.error);
+  client
+    .send({
+      from: sender,
+      to: recipients,
+      template_uuid: "70375d2f-ae5e-45b1-a406-48dd4ad011e0",
+      template_variables: {
+        clientName: submission.value.clientName,
+        invoiceNumber: submission.value.invoiceNumber,
+        dueDate: format(finalDate, "PP"),
+        totalAmount: formatCurrency({
+          amount: submission.value.total,
+          currency: submission.value.currency as any,
+        }),
+        invoiceLink: `http://localhost:3000/api/invoice/${data.id}`,
+      },
+    })
+    .then(console.log)
+    .catch(console.error);
 
-  //my free version of mailtrap is not allowing me to send emails so I commented this out.
+  // my free version of mailtrap is not allowing me to send emails so I commented this out.
   // I will uncomment this when I get the paid version of mailtrap.
   // also change the template_uuid as you have two separate templates for the create invoice and the update invoice.
 
@@ -193,7 +199,6 @@ export async function DeleteInvoice(invoiceId: string) {
   return redirect("/dashboard/invoices");
 }
 
-
 export async function MarkInvoiceAsPaid(invoiceId: string) {
   const session = await requireUser();
   const data = await prisma.invoice.update({
@@ -207,4 +212,3 @@ export async function MarkInvoiceAsPaid(invoiceId: string) {
   });
   return redirect("/dashboard/invoices");
 }
-

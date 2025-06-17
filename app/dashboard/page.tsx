@@ -1,26 +1,42 @@
-import { Button } from "@/components/ui/button";
-import { signOut } from "../utils/auth";
 import { requireUser } from "../utils/hooks";
+import { DashboardBlocks } from "../components/DashboardBlocks";
+import { InvoiceGraph } from "../components/InvoiceGraph";
+import { RecentInvoices } from "../components/RecentInvoices";
+import { prisma } from "../utils/prisma";
+import { EmptyState } from "../components/EmptyState";
+import { Suspense } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
+
+async function getData(userId: string) {
+  const data = await prisma.invoice.findMany({
+    where: {
+      userId: userId,
+    },
+    select: {
+      id: true,
+    },
+  });
+  return data;
+}
 
 export default async function DashboardRoute() {
-    const session = await requireUser();
+  const session = await requireUser();
 
-    return (
-        <div className="flex h-screen w-full items-center justify-center bg-gray-100 px-4  ">       
-            <div className="flex flex-col gap-y-4">
-                <h1 className="text-2xl font-bold">Dashboard</h1>
-                <p className="text-gray-600">Welcome to the dashboard!</p>
-            </div>
-            <div>
-                <form 
-                    action={async () => {
-                    "use server"
-                    await signOut()
-                }}>
-                    <Button className="bg-red-500 text-white px-4 py-2 rounded" type="submit">Sign Out</Button>                    
-                </form>
-            </div>
-        </div>
-    );          
+  const data = await getData(session.user?.id as string);
 
+  return (
+    <>
+      {data.length > 0 ? (
+        <Suspense fallback={<Skeleton className="w-full h-full flex-1" />}>
+          <DashboardBlocks />
+          <div className="grid gap-4 lg:grid-cols-3 md:gap-8">
+            <InvoiceGraph />
+            <RecentInvoices />
+          </div>
+        </Suspense>
+      ) : (
+        <EmptyState />
+      )}
+    </>
+  );
 }

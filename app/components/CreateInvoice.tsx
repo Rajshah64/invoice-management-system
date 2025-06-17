@@ -28,14 +28,19 @@ import { parseWithZod } from "@conform-to/zod";
 import { invoiceSchema } from "../utils/zodSchemas";
 import { formatCurrency } from "../utils/formatCurrency";
 
-interface iAppProps{
+interface iAppProps {
   firstName: string;
   lastName: string;
   address: string;
   email: string;
 }
 
-export function CreateInvoice({firstName,lastName,address,email}:iAppProps) {
+export function CreateInvoice({
+  firstName,
+  lastName,
+  address,
+  email,
+}: iAppProps) {
   const [lastResult, action] = useActionState(createInvoice, undefined);
   const [form, fields] = useForm({
     lastResult,
@@ -57,6 +62,7 @@ export function CreateInvoice({firstName,lastName,address,email}:iAppProps) {
   const [quantity, setQuantity] = useState(0);
   const calculateTotal = rate * quantity;
   const [currency, setCurrency] = useState("USD");
+  const [isDateUpdating, setIsDateUpdating] = useState(false);
   // const [date, setDate] = useState<Date>()
   // const [netTerm, setNetTerm] = useState<string>("15")
 
@@ -75,19 +81,28 @@ export function CreateInvoice({firstName,lastName,address,email}:iAppProps) {
         <form
           id={form.id}
           action={action}
-          onSubmit={form.onSubmit}
+          onSubmit={(e) => {
+            if (isDateUpdating) {
+              e.preventDefault();
+              return;
+            }
+            form.onSubmit(e);
+          }}
           noValidate
         >
-          <input
-            type="hidden"
-            
-          />
+          <input type="hidden" />
           <input
             type="hidden"
             name={fields.date.name}
             value={selectedDate.toISOString()}
+            readOnly
           />
-          <input type="hidden" key={fields.total.key} name={fields.total.name} value={calculateTotal} />
+          <input
+            type="hidden"
+            key={fields.total.key}
+            name={fields.total.name}
+            value={calculateTotal}
+          />
 
           <div className="flex flex-col gap-1 w-fit mb-6">
             <div className="flex items-center justify-between gap-4">
@@ -290,11 +305,21 @@ export function CreateInvoice({firstName,lastName,address,email}:iAppProps) {
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent>
-                  <Calendar
+                  {/* <Calendar
                     mode="single"
                     selected={selectedDate}
                     onSelect={(date) => {
                       setSelectedDate(date || new Date());
+                    }}
+                    fromDate={new Date()}
+                  /> */}
+                  <Calendar
+                    mode="single"
+                    selected={selectedDate}
+                    onSelect={(date) => {
+                      setIsDateUpdating(true);
+                      setSelectedDate(date || new Date());
+                      setTimeout(() => setIsDateUpdating(false), 10); // allow state to update before submit
                     }}
                     fromDate={new Date()}
                   />

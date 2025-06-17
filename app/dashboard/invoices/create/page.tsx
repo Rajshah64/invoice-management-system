@@ -3,6 +3,8 @@ import { requireUser } from "@/app/utils/hooks";
 import { prisma } from "@/app/utils/prisma";
 
 async function getUserData(UserId: string) {
+  //await new Promise((resolve)=>{setTimeout(resolve,3000)});
+  // this was to show how suspense works in react.
   const data = await prisma.user.findUnique({
     where: {
       id: UserId,

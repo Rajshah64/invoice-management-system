@@ -1,9 +1,7 @@
-import { formatCurrency } from "@/app/utils/formatCurrency";
 import { requireUser } from "@/app/utils/hooks";
 import { client } from "@/app/utils/mailtrap";
 import { prisma } from "@/app/utils/prisma";
 import { addDays, format } from "date-fns";
-import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 
 export async function POST(
@@ -28,7 +26,7 @@ export async function POST(
   };
   const recipients = [
     {
-      email: "rajshah1759979@gmail.com",
+      email: "rajviralshah@gmail.com",
     },
   ];
 
@@ -43,7 +41,7 @@ export async function POST(
       .send({
         from: sender,
         to: recipients,
-        template_uuid: "61635a68-1fe7-4424-8e1d-68e57ff04715",
+        template_uuid: "fe04d860-6c27-45c9-8bd1-6da9dffe0714",
         template_variables: {
           first_name: invoiceData.clientName,
           company_info_name: "Invoicely",
