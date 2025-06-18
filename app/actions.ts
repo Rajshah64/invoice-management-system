@@ -101,7 +101,10 @@ export async function createInvoice(prevState: any, formData: FormData) {
           amount: submission.value.total,
           currency: submission.value.currency as any,
         }),
-        invoiceLink: `http://localhost:3000/api/invoice/${data.id}`,
+        invoiceLink:
+          process.env.NODE_ENV !== "production"
+            ? `http://localhost:3000/api/invoice/${data.id}`
+            : `https://invoice-management-s-git-6e1be5-rajviralshah-gmailcoms-projects.vercel.app/api/invoice/${data.id}`,
       },
     })
     .then(console.log)
@@ -174,7 +177,10 @@ export async function updateInvoice(prevState: any, formData: FormData) {
           amount: submission.value.total,
           currency: submission.value.currency as any,
         }),
-        invoiceLink: `http://localhost:3000/api/invoice/${data.id}`,
+        invoiceLink:
+          process.env.NODE_ENV !== "production"
+            ? `http://localhost:3000/api/invoice/${data.id}`
+            : `https://invoice-management-s-git-6e1be5-rajviralshah-gmailcoms-projects.vercel.app/api/invoice/${data.id}`,
       },
     })
     .then(console.log)
