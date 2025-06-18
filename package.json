@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prisma:reset-client": "rm -rf node_modules .prisma pnpm-lock.yaml && pnpm install && pnpm prisma generate"
+    "postinstall": "prisma generate"
+    
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.8.0",
