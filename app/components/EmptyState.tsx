@@ -10,7 +10,7 @@ export function EmptyState() {
       </div>
       <h2 className="mt-6 text-xl font-semibold">Please Create an Invoice!!</h2>
       <p className="mb-8 mt-2 text-sm text-muted-foreground">
-        Hey you haven't created any invoice, please create one.
+        Hey you haven&apos;t created any invoice, please create one.
       </p>
       <Link href="/dashboard/invoices/create" className={buttonVariants()}>
         <PlusCircle className="size-4 mr-2" />
