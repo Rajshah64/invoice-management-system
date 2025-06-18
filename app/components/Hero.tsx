@@ -12,7 +12,7 @@ export function Hero() {
         </span>
         <h1 className="mt-8 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tighter">
           Invoicing made{" "}
-          <span className="block -mt-2 bg-gradient-to-l from-blue-500 via-teal-500 to-green-500 text-transparent bg-clip-text">
+          <span className="block -mt-2 bg-gradient-to-l from-blue-500 via-teal-500 to-green-500 text-transparent bg-clip-text mb-10">
             super easy!
           </span>
           {/* the above line means that it will begin with blue on the right with teal followed by green and then we clip the bg colour to the text and then make the background trasparent*/}
