@@ -1,7 +1,7 @@
 import { RainbowButton } from "@/components/magicui/rainbow-button";
 import Image from "next/image";
 import Link from "next/link";
-import HeroImage from "@/public/hero.png";
+import HeroImage from "@/public/Invoicely.png";
 
 export function Hero() {
   return (
@@ -19,8 +19,8 @@ export function Hero() {
         </h1>
 
         <p className="max-w-xl mx-auto mt-4 lg:text-lg text-muted-foreground">
-          Creating Invoices can be a pain! We at Invoicely make it super
-          easy for you to get paid in time!
+          Creating Invoices can be a pain! We at Invoicely make it super easy
+          for you to get paid in time!
         </p>
 
         <div className="mt-7 mb-12">
